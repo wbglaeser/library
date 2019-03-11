@@ -8,8 +8,8 @@ pub struct Publication {
     genre: String,
 }
 
-pub fn read_input(info: &String) -> String {
-    println!("Type in the {} of the work!", *info);
+pub fn read_input(info: String) -> String {
+    println!("Type in the {} of the work!", info);
     let mut input = String::new();
     match io::stdin().read_line(&mut input) {
         Ok(_) => {}
@@ -28,13 +28,9 @@ pub fn insert_entry(conn: &Connection, entry: Publication) {
 
 pub fn add_entry(conn: &Connection) {
 
-    let field_title = String::from("Title");
-    let field_author = String::from("Author");
-    let field_genre = String::from("Genre");
-
-    let title = read_input(&field_title);
-    let author = read_input(&field_author);
-    let genre = read_input(&field_genre);
+    let title = read_input(String::from("Title"));
+    let author = read_input(String::from("Author"));
+    let genre = read_input(String::from("Genre"));
 
     let new_pub = Publication {
         id: 0,
